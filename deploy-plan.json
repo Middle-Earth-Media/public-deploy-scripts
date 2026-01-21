@@ -1,0 +1,22 @@
+{
+	"build": {
+		"php": "8.5",
+		"run_npm": "true",
+		"npm_run_command": "npm run build"
+	},
+	"image": {
+		"name": "php",
+		"tag": "8.5-latest-slim",
+		"databases": [],
+		"os_modules": [],
+		"php_extensions": [],
+		"max_file_size": "20",
+		"timeout": "60"
+	},
+	"server": {
+		"ingress": "true",
+		"pv": "false",
+		"queue": "false",
+		"cron": []
+	}
+}
