@@ -4,7 +4,7 @@ set -e
 
 echo
 # ------- selectable PVs ----------------------------------------------------
-pvs="veritas-data"
+pvs="veritas-storage"
 
 echo "Select the persistent volumes to mount (comma-separated list):"
 echo
