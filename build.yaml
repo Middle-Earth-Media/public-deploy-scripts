@@ -1,8 +1,7 @@
 name: Run Laravel Pint and Build PHP
-
+ 
 on:
   push:
-  pull_request_target:
   workflow_dispatch:
 
 permissions:
@@ -15,5 +14,5 @@ jobs:
     uses: Middle-Earth-Media/build-laravel-app-image/.github/workflows/build-deploy-app.yml@prod
     with:
       repository: ${{ github.repository }}
-      branch: ${{ github.base_ref || github.ref_name }}
+      branch: ${{ github.ref_name }}
     secrets: inherit
