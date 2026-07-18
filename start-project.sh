@@ -78,12 +78,12 @@ fetch_if_missing_or_fallback() {
 # POST deploy-plan.json to the Dockerfile API. Falls back to existing Dockerfile.dev on failure.
 fetch_dockerfile_or_fallback() {
     tmp="Dockerfile.dev.tmp.$$"
-    # TEST: https://build-dockerfile-api.oitapps-test.ua.edu/api/docker/build-dev
-    # PROD: https://build-dockerfile-api.oitapps.ua.edu/api/docker/build-dev
+    # TEST: https://build-dockerfile-api-test.thewestgate.org/api/docker/build-dev
+    # PROD: https://build-dockerfile-api.thewestgate.org/api/docker/build-dev
     if curl -sSL -f -X POST -d @deploy-plan.json \
          -H "Content-Type: application/json" -H "AUTH: $AUTH" \
          -o "$tmp" \
-         https://build-dockerfile-api.oitapps.ua.edu/api/docker/build-dev; then
+         https://build-dockerfile-api.thewestgate.org/api/docker/build-dev; then
         mv "$tmp" Dockerfile.dev
         echo "✅ Updated Dockerfile.dev"
     else
