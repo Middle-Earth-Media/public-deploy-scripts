@@ -2,17 +2,24 @@
 set -euo pipefail
 
 WORKFLOW_DIR=".github/workflows"
-LEGACY_FILE="build.yaml"
-LEGACY_URL="https://raw.githubusercontent.com/Middle-Earth-Media/public-deploy-scripts/main/build.yaml"
+BASE_URL="https://raw.githubusercontent.com/Middle-Earth-Media/public-deploy-scripts/refs/heads/main"
 
-echo "Restoring legacy GitHub workflows..."
+FILES=(
+  build-v3.yaml
+  refresh-vault-secrets.yaml
+)
+
+echo "Restoring v3 GitHub workflows..."
 
 mkdir -p "$WORKFLOW_DIR"
 
 # Remove existing workflows
 find "$WORKFLOW_DIR" -type f \( -name "*.yml" -o -name "*.yaml" \) -delete
 
-echo "Downloading $LEGACY_FILE"
-curl -fsSL "$LEGACY_URL" -o "$WORKFLOW_DIR/$LEGACY_FILE"
+# Download workflows
+for file in "${FILES[@]}"; do
+  echo "Downloading $file"
+  curl -fsSL "$BASE_URL/$file" -o "$WORKFLOW_DIR/$file"
+done
 
-echo "✅ Legacy workflows restored."
+echo "✅ v3 workflows restored."

@@ -13,5 +13,10 @@ jobs:
   deploy:
     uses: Middle-Earth-Media/build-laravel-app-image/.github/workflows/build-deploy-app-v3.yml@main
     with:
+      # Required: tells the reusable workflow which application repository to build.
       repository: ${{ github.repository }}
+      # Set true for unusually large Docker images, such as CUDA/PyTorch. When
+      # enabled, unused hosted-runner toolchains are removed before Buildx runs.
+      free_disk_space: false
+    # Passes this repository's Actions secrets to the reusable workflow.
     secrets: inherit
